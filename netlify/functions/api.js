@@ -1,30 +1,21 @@
-const playwright = require('playwright');
+const puppeteer = require('puppeteer-core');
+const chromium = require('chrome-aws-lambda');
 
 export const handler = async () => {
 
-  let browser = null;
+  const browser = await puppeteer.launch({
+    args: chromium.args,
+    executablePath: await chromium.executablePath,
+    headless: true,
+  });
 
-  try {
-    browser = await playwright.chromium.launch({
-      headless: true,
-      proxy: {
-        server: '119.160.107.86:3128'
-      },
-    });
-  } catch (error) {
-    console.log(error);
-    return {
-      statusCode: 505,
-      body: JSON.stringify({
-        message: 'something bad in browser instance',
-      }),
-    }
-  }
+  await browser.close();
+ 
     
-    return {
-      statusCode: 200,
-      body: JSON.stringify({
-        message: "hello",
-      }),
-    }
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      message: "hello",
+    }),
+  }
 }
