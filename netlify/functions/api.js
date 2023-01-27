@@ -12,10 +12,11 @@ export const handler = async () => {
       },
     });
   } catch (error) {
+    console.log(error);
     return {
       statusCode: 505,
       body: JSON.stringify({
-        message: error,
+        message: 'something bad in browser instance',
       }),
     }
   }
