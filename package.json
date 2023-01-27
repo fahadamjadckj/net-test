@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/fahadamjadckj/net-test#readme",
   "dependencies": {
-    "chrome-aws-lambda": "^10.1.0",
-    "puppeteer-core": "^10.1.0"
+    "@sparticuz/chromium": "^107.0.0",
+    "puppeteer-core": "^18.1.0"
   }
 }
